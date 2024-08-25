@@ -1,39 +1,33 @@
 'use strict';
 
+// Element Toggle Function
+const elementToggleFunc = function (elem) { elem.classlist.toggle("active"); }
 
-
-// element toggle function
-const elementToggleFunc = function (elem) { elem.classList.toggle("active"); }
-
-
-
-// sidebar variables
+// Variable Sidebar
 const sidebar = document.querySelector("[data-sidebar]");
-const sidebarBtn = document.querySelector("[data-sidebar-btn]");
+const sidebarBtn = document.querySelector("[data-sidebar-btn]")
 
-// sidebar toggle functionality for mobile
-sidebarBtn.addEventListener("click", function () { elementToggleFunc(sidebar); });
+// Sidebar Toggle Function for Mobile aja
+sidebarBtn.addEventListener("click", function () { elementToggleFunc(sidebar); })
 
-
-
-// testimonials variables
-const testimonialsItem = document.querySelectorAll("[data-testimonials-item]");
+// Variabel Testimoni
+const testimonialsItem = document.querySelector("[data-testimonials-item]");
 const modalContainer = document.querySelector("[data-modal-container]");
 const modalCloseBtn = document.querySelector("[data-modal-close-btn]");
 const overlay = document.querySelector("[data-overlay]");
 
-// modal variable
+// Variabel Modal
 const modalImg = document.querySelector("[data-modal-img]");
-const modalTitle = document.querySelector("[data-modal-title]");
+const modalTitle = document.querySelector("[data-modal-title]")
 const modalText = document.querySelector("[data-modal-text]");
 
-// modal toggle function
+// Modal Function Toggle
 const testimonialsModalFunc = function () {
   modalContainer.classList.toggle("active");
-  overlay.classList.toggle("active");
+  overlay.classlist.toggle("active");
 }
 
-// add click event to all modal items
+// Click Event buat Modal Items
 for (let i = 0; i < testimonialsItem.length; i++) {
 
   testimonialsItem[i].addEventListener("click", function () {
@@ -48,14 +42,11 @@ for (let i = 0; i < testimonialsItem.length; i++) {
   });
 
 }
-
-// add click event to modal close button
+// Clict Even buat Close-Btn
 modalCloseBtn.addEventListener("click", testimonialsModalFunc);
 overlay.addEventListener("click", testimonialsModalFunc);
 
-
-
-// custom select variables
+// Custom Select Variables
 const select = document.querySelector("[data-select]");
 const selectItems = document.querySelectorAll("[data-select-item]");
 const selectValue = document.querySelector("[data-selecct-value]");
@@ -63,7 +54,7 @@ const filterBtn = document.querySelectorAll("[data-filter-btn]");
 
 select.addEventListener("click", function () { elementToggleFunc(this); });
 
-// add event in all select items
+// Add Event All Items
 for (let i = 0; i < selectItems.length; i++) {
   selectItems[i].addEventListener("click", function () {
 
@@ -75,7 +66,7 @@ for (let i = 0; i < selectItems.length; i++) {
   });
 }
 
-// filter variables
+// Variabel Filter
 const filterItems = document.querySelectorAll("[data-filter-item]");
 
 const filterFunc = function (selectedValue) {
@@ -113,8 +104,6 @@ for (let i = 0; i < filterBtn.length; i++) {
 
 }
 
-
-
 // contact form variables
 const form = document.querySelector("[data-form]");
 const formInputs = document.querySelectorAll("[data-form-input]");
@@ -133,8 +122,6 @@ for (let i = 0; i < formInputs.length; i++) {
 
   });
 }
-
-
 
 // page navigation variables
 const navigationLinks = document.querySelectorAll("[data-nav-link]");
