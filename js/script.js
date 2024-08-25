@@ -5,7 +5,7 @@ const elementToggleFunc = function (elem) { elem.classlist.toggle("active"); }
 
 // Variable Sidebar
 const sidebar = document.querySelector("[data-sidebar]");
-const sidebarBtn = document.querySelector("[data-sidebar-btn]")
+const sidebarBtn = document.querySelector("[data-sidebar-btn]");
 
 // Sidebar Toggle Function for Mobile aja
 sidebarBtn.addEventListener("click", function () { elementToggleFunc(sidebar); })
