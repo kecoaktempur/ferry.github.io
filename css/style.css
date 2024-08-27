@@ -12,7 +12,7 @@
 
 
 /*-----------------------------------*\
-  #CUSTOM PROPERTY
+#CUSTOM PROPERTY
 \*-----------------------------------*/
 
 :root {
@@ -99,14 +99,6 @@
 
 }
 
-
-
-
-
-/*-----------------------------------*\
-    #RESET
-  \*-----------------------------------*/
-
 *,
 *::before,
 *::after {
@@ -164,14 +156,6 @@ html {
 body {
     background: var(--smoky-black);
 }
-
-
-
-
-
-/*-----------------------------------*\
-    #REUSED STYLE
-  \*-----------------------------------*/
 
 .sidebar,
 article {
@@ -397,6 +381,7 @@ main {
     z-index: 1;
 }
 
+
 .info_more-btn::before {
     content: "";
     position: absolute;
@@ -430,6 +415,15 @@ main {
 .sidebar.active .sidebar-info_more {
     opacity: 1;
     visibility: visible;
+}
+
+.sidebar .info_more-btn .arrow-btn {
+    transform: rotate(0);
+    transition: .5s ease;
+}
+
+.sidebar.active .info_more-btn .arrow-btn {
+    transform: rotate(180);
 }
 
 .contacts-list {

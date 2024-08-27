@@ -8,7 +8,7 @@ const sidebar = document.querySelector("[data-sidebar]");
 const sidebarBtn = document.querySelector("[data-sidebar-btn]");
 
 // Sidebar Toggle Function for Mobile aja
-sidebarBtn.addEventListener("click", function () { elementToggleFunc(sidebar); })
+sidebarBtn.addEventListener("click", function () { sidebar.classList.toggle("active"); })
 
 // Variabel Testimoni
 const testimonialsItem = document.querySelector("[data-testimonials-item]");
@@ -18,7 +18,7 @@ const overlay = document.querySelector("[data-overlay]");
 
 // Variabel Modal
 const modalImg = document.querySelector("[data-modal-img]");
-const modalTitle = document.querySelector("[data-modal-title]")
+const modalTitle = document.querySelector("[data-modal-title]");
 const modalText = document.querySelector("[data-modal-text]");
 
 // Modal Function Toggle
