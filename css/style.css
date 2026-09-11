@@ -928,15 +928,15 @@ main {
     margin-bottom: 15px;
 }
 
-.skill .title-wrapper {
+.skills-item .title-wrapper {
     display: flex;
     align-items: center;
     gap: 5px;
     margin-bottom: 8px;
 }
 
-.skill .title-wrapper data {
-    color: white;
+.skills-item .title-wrapper data {
+    color: var(--light-gray);
     font-size: var(--fs-7);
     font-weight: var(--fw-300);
 }
