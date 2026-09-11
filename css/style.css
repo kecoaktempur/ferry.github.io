@@ -936,7 +936,7 @@ main {
 }
 
 .skill .title-wrapper data {
-    color: var(--light-gray);
+    color: white;
     font-size: var(--fs-7);
     font-weight: var(--fw-300);
 }
