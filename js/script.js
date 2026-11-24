@@ -1,17 +1,21 @@
 'use strict';
 
 // Element Toggle Function
-const elementToggleFunc = function (elem) { elem.classlist.toggle("active"); }
+const elementToggleFunc = function (elem) { elem.classList.toggle("active"); }
 
 // Variable Sidebar
 const sidebar = document.querySelector("[data-sidebar]");
 const sidebarBtn = document.querySelector("[data-sidebar-btn]");
 
 // Sidebar Toggle Function for Mobile aja
-sidebarBtn.addEventListener("click", function () { sidebar.classList.toggle("active"); })
+sidebarBtn.addEventListener("click", function () {
+  const isOpen = sidebar.classList.toggle("active");
+  sidebarBtn.setAttribute("aria-expanded", String(isOpen));
+  sidebarBtn.setAttribute("aria-label", isOpen ? "Hide contacts" : "Show contacts");
+})
 
 // Variabel Testimoni
-const testimonialsItem = document.querySelector("[data-testimonials-item]");
+const testimonialsItems = document.querySelectorAll("[data-testimonials-item]");
 const modalContainer = document.querySelector("[data-modal-container]");
 const modalCloseBtn = document.querySelector("[data-modal-close-btn]");
 const overlay = document.querySelector("[data-overlay]");
@@ -24,13 +28,13 @@ const modalText = document.querySelector("[data-modal-text]");
 // Modal Function Toggle
 const testimonialsModalFunc = function () {
   modalContainer.classList.toggle("active");
-  overlay.classlist.toggle("active");
+  overlay.classList.toggle("active");
 }
 
 // Click Event buat Modal Items
-for (let i = 0; i < testimonialsItem.length; i++) {
+for (let i = 0; i < testimonialsItems.length; i++) {
 
-  testimonialsItem[i].addEventListener("click", function () {
+  testimonialsItems[i].addEventListener("click", function () {
 
     modalImg.src = this.querySelector("[data-testimonials-avatar]").src;
     modalImg.alt = this.querySelector("[data-testimonials-avatar]").alt;
@@ -49,7 +53,7 @@ overlay.addEventListener("click", testimonialsModalFunc);
 // Custom Select Variables
 const select = document.querySelector("[data-select]");
 const selectItems = document.querySelectorAll("[data-select-item]");
-const selectValue = document.querySelector("[data-selecct-value]");
+const selectValue = document.querySelector("[data-select-value]");
 const filterBtn = document.querySelectorAll("[data-filter-btn]");
 
 select.addEventListener("click", function () { elementToggleFunc(this); });
@@ -108,6 +112,7 @@ for (let i = 0; i < filterBtn.length; i++) {
 const form = document.querySelector("[data-form]");
 const formInputs = document.querySelectorAll("[data-form-input]");
 const formBtn = document.querySelector("[data-form-btn]");
+const formStatus = document.querySelector("[data-form-status]");
 
 // add event to all form input field
 for (let i = 0; i < formInputs.length; i++) {
@@ -123,24 +128,42 @@ for (let i = 0; i < formInputs.length; i++) {
   });
 }
 
+form.addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  if (!form.checkValidity()) {
+    form.reportValidity();
+    return;
+  }
+
+  const formData = new FormData(form);
+  const name = formData.get("fullname");
+  const email = formData.get("email");
+  const message = formData.get("message");
+  const subject = encodeURIComponent(`Portfolio inquiry from ${name}`);
+  const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
+
+  formStatus.textContent = "Opening your email app. Send the drafted message to contact Ferry.";
+  window.location.href = `mailto:triwan98@gmail.com?subject=${subject}&body=${body}`;
+});
+
 // page navigation variables
 const navigationLinks = document.querySelectorAll("[data-nav-link]");
 const pages = document.querySelectorAll("[data-page]");
 
 // add event to all nav link
-for (let i = 0; i < navigationLinks.length; i++) {
-  navigationLinks[i].addEventListener("click", function () {
+navigationLinks.forEach((navigationLink) => {
+  navigationLink.addEventListener("click", function () {
+    const selectedPage = this.textContent.trim().toLowerCase();
 
-    for (let i = 0; i < pages.length; i++) {
-      if (this.innerHTML.toLowerCase() === pages[i].dataset.page) {
-        pages[i].classList.add("active");
-        navigationLinks[i].classList.add("active");
-        window.scrollTo(0, 0);
-      } else {
-        pages[i].classList.remove("active");
-        navigationLinks[i].classList.remove("active");
-      }
-    }
+    pages.forEach((page) => {
+      page.classList.toggle("active", page.dataset.page === selectedPage);
+    });
 
+    navigationLinks.forEach((link) => {
+      link.classList.toggle("active", link === this);
+    });
+
+    window.scrollTo(0, 0);
   });
-}
+});
